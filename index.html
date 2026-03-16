@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Udaykumar Kotipalli | Cybersecurity Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0c;--bg2:#0f0f12;--card:#141417;--card2:#1c1c21;--w85:rgba(255,255,255,0.85);--w55:rgba(255,255,255,0.55);--w25:rgba(255,255,255,0.25);--w44:rgba(255,255,255,0.44);--w20:rgba(255,255,255,0.20);--w07:rgba(255,255,255,0.07);--w17:rgba(255,255,255,0.17);--red:#ff5757;--orange:#ff8c42;--yellow:#ffd54f}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Outfit",sans-serif;background:var(--bg);color:var(--w85);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;z-index:0}
+
+/* ── SPLASH ── */
+#splash{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg);pointer-events:none;transition:opacity .6s,filter .6s}
+#splash .inner{pointer-events:all;display:flex;flex-direction:column;align-items:center;text-align:center;animation:fadeUp .9s ease .1s both}
+#splash::after{content:"";position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent);animation:scan 3.5s linear infinite;pointer-events:none}
+@keyframes scan{0%{top:0%}100%{top:100%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.s-ring{position:relative;width:190px;height:190px;margin-bottom:26px;flex-shrink:0}
+.s-ring::before{content:"";position:absolute;inset:-3px;border-radius:50%;background:conic-gradient(rgba(255,255,255,.65) 0deg,rgba(255,255,255,.12) 120deg,rgba(255,255,255,.65) 240deg,rgba(255,255,255,.12) 360deg);animation:spin 6s linear infinite}
+.s-ring::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--bg);z-index:1}
+@keyframes spin{to{transform:rotate(360deg)}}
+.s-ring img{position:absolute;inset:8px;border-radius:50%;z-index:2;width:calc(100% - 16px);height:calc(100% - 16px);object-fit:cover;object-position:center top}
+.s-status{display:inline-flex;align-items:center;gap:7px;font-family:"Share Tech Mono",monospace;font-size:.67rem;color:var(--w55);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
+.s-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6);animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 5px rgba(255,255,255,.4)}50%{opacity:.35;box-shadow:none}}
+.s-name{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.025em;color:var(--w85);margin-bottom:9px}
+.s-name span{color:var(--w55)}
+.s-sub{font-family:"Share Tech Mono",monospace;font-size:.84rem;color:var(--w44);letter-spacing:.07em;margin-bottom:26px}
+.s-line{width:50px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.26),transparent);margin:0 auto 26px}
+.s-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:460px;margin-bottom:40px}
+.s-chip{font-family:"Share Tech Mono",monospace;font-size:.66rem;padding:5px 11px;border:1px solid rgba(255,255,255,.09);color:var(--w44);letter-spacing:.06em;background:rgba(255,255,255,.03)}
+.s-cue{display:flex;flex-direction:column;align-items:center;gap:7px;font-family:"Share Tech Mono",monospace;font-size:.62rem;color:var(--w20);letter-spacing:.15em;text-transform:uppercase;animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{opacity:.45;transform:translateY(0)}50%{opacity:.9;transform:translateY(5px)}}
+.s-arr{font-size:1.1rem;color:var(--w55)}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:150;display:flex;align-items:center;justify-content:space-between;padding:0 60px;height:66px;background:rgba(10,10,12,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--w07)}
+.nav-logo{font-family:"Share Tech Mono",monospace;font-size:1rem;color:var(--w85);letter-spacing:.06em}
+.nav-logo span{color:var(--w55)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-family:"Share Tech Mono",monospace;font-size:.72rem;color:var(--w44);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;position:relative}
+.nav-links a::after{content:"";position:absolute;bottom:-3px;left:0;right:100%;height:1px;background:var(--w85);transition:right .25s}
+.nav-links a:hover,.nav-links a.act{color:var(--w85)}
+.nav-links a:hover::after,.nav-links a.act::after{right:0}
+.nav-r{display:flex;align-items:center;gap:10px}
+.nav-res{font-family:"Share Tech Mono",monospace;font-size:.71rem;letter-spacing:.08em;text-transform:uppercase;padding:7px 16px;border:1px solid var(--w17);color:var(--w44);background:transparent;text-decoration:none;transition:all .2s;cursor:pointer}
+.nav-res:hover{color:var(--w85);border-color:var(--w55);background:rgba(255,255,255,.05)}
+.nav-cta{font-family:"Share Tech Mono",monospace;font-size:.73rem;letter-spacing:.1em;text-transform:uppercase;padding:8px 20px;border:1px solid var(--w17);color:var(--w85);background:transparent;text-decoration:none;transition:all .2s;cursor:pointer}
+.nav-cta:hover{background:var(--w85);color:var(--bg)}
+
+/* ── GENERIC ── */
+section{position:relative;z-index:1}
+.container{max-width:1140px;margin:0 auto;padding:0 40px}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;align-items:center;padding:100px 0 60px}
+.h-inner{max-width:1140px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.h-tag{display:inline-flex;align-items:center;gap:8px;font-family:"Share Tech Mono",monospace;font-size:.7rem;color:var(--w55);letter-spacing:.18em;text-transform:uppercase;margin-bottom:20px;opacity:0;animation:fadeUp .6s ease .2s forwards}
+.h-tag::before{content:"";width:26px;height:1px;background:var(--w55)}
+.h-name{font-size:clamp(2.5rem,5vw,3.9rem);font-weight:800;line-height:1.04;letter-spacing:-.025em;opacity:0;animation:fadeUp .7s ease .35s forwards}
+.h-name .dim{color:var(--w55)}
+.h-title{font-family:"Share Tech Mono",monospace;font-size:.98rem;color:var(--w44);margin:16px 0 26px;letter-spacing:.04em;opacity:0;animation:fadeUp .7s ease .5s forwards}
+.blink{display:inline-block;width:2px;height:1em;background:var(--w55);vertical-align:middle;margin-left:4px;animation:blink 1s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.h-bio{font-size:.96rem;color:var(--w44);line-height:1.78;max-width:510px;opacity:0;animation:fadeUp .7s ease .65s forwards}
+.h-actions{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;opacity:0;animation:fadeUp .7s ease .8s forwards}
+.btn-p{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--w85);color:var(--bg);font-family:"Share Tech Mono",monospace;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .25s;font-weight:700;cursor:pointer}
+.btn-p:hover{background:rgba(255,255,255,.7);transform:translateY(-2px)}
+.btn-o{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border:1px solid var(--w17);color:var(--w85);font-family:"Share Tech Mono",monospace;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .25s;cursor:pointer}
+.btn-o:hover{border-color:var(--w85);background:rgba(255,255,255,.05);transform:translateY(-2px)}
+/* Resume button - opens in new tab + download option */
+.btn-r{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border:1px solid rgba(255,255,255,.25);color:var(--w85);font-family:"Share Tech Mono",monospace;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .25s;background:rgba(255,255,255,.07);cursor:pointer;position:relative}
+.btn-r:hover{background:rgba(255,255,255,.14);border-color:var(--w55);transform:translateY(-2px);box-shadow:0 4px 20px rgba(255,255,255,.08)}
+.h-stats{display:flex;gap:28px;margin-top:44px;padding-top:28px;border-top:1px solid var(--w07);opacity:0;animation:fadeUp .7s ease .95s forwards}
+.sv{font-family:"Share Tech Mono",monospace;font-size:1.5rem;color:var(--w85);display:block}
+.sl{font-size:.7rem;color:var(--w20);letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
+.h-photo{opacity:0;animation:fadeUp 1s ease .5s forwards;display:flex;flex-direction:column;align-items:center;gap:20px}
+.h-ring{position:relative;width:220px;height:220px}
+.h-ring::before{content:"";position:absolute;inset:-3px;border-radius:50%;background:conic-gradient(rgba(255,255,255,.6) 0deg,rgba(255,255,255,.1) 120deg,rgba(255,255,255,.6) 240deg,rgba(255,255,255,.1) 360deg);animation:spin 6s linear infinite}
+.h-ring::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--bg);z-index:1}
+.h-ring img{position:absolute;inset:9px;border-radius:50%;z-index:2;width:calc(100% - 18px);height:calc(100% - 18px);object-fit:cover;object-position:center top;display:block}
+.h-ftags{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;max-width:260px}
+.ftag{font-family:"Share Tech Mono",monospace;font-size:.64rem;padding:4px 10px;border:1px solid var(--w07);color:var(--w20);letter-spacing:.05em;background:rgba(255,255,255,.02)}
+
+/* ── SECTIONS ── */
+.sh{margin-bottom:54px}
+.stag{display:inline-flex;align-items:center;gap:10px;font-family:"Share Tech Mono",monospace;font-size:.69rem;color:var(--w55);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
+.stag::before{content:"";width:20px;height:1px;background:var(--w55)}
+.stitle{font-size:clamp(1.75rem,3vw,2.45rem);font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.dim{color:var(--w20)}
+
+/* ── ABOUT ── */
+#about{padding:110px 0}
+.ag{display:grid;grid-template-columns:1.1fr .9fr;gap:74px;align-items:start}
+.atext p{color:var(--w44);font-size:.96rem;line-height:1.82;margin-bottom:17px}
+.atext p strong{color:var(--w85);font-weight:600}
+.ahls{display:flex;flex-direction:column;gap:11px;margin-top:28px}
+.ahl{display:flex;align-items:flex-start;gap:13px;padding:15px 18px;background:var(--card);border:1px solid var(--w07);border-left:2px solid rgba(255,255,255,.22);transition:all .25s;cursor:default}
+.ahl:hover{border-left-color:var(--w55);background:var(--card2)}
+.ahl-ico{font-size:1.05rem;flex-shrink:0;margin-top:1px}
+.ahl-h{font-size:.87rem;font-weight:600;color:var(--w85);margin-bottom:3px}
+.ahl-p{font-size:.79rem;color:var(--w20);margin:0;line-height:1.55}
+.aside{display:flex;flex-direction:column;gap:16px}
+.icard{background:var(--card);border:1px solid var(--w07);padding:22px;transition:border-color .25s}
+.icard:hover{border-color:var(--w17)}
+.icard h3{font-family:"Share Tech Mono",monospace;font-size:.69rem;color:var(--w55);letter-spacing:.16em;text-transform:uppercase;margin-bottom:15px;padding-bottom:11px;border-bottom:1px solid var(--w07)}
+.irow{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.irow:last-child{border-bottom:none}
+.ilbl{font-size:.75rem;color:var(--w20);letter-spacing:.05em}
+.ival{font-size:.82rem;color:var(--w85);font-weight:500;text-align:right}
+.cbadge{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.cbadge:last-child{border-bottom:none;padding-bottom:0}
+.cico{width:29px;height:29px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.04);border:1px solid var(--w07);flex-shrink:0;font-size:.8rem}
+.cinfo{flex:1;min-width:0}
+.cname{font-size:.81rem;font-weight:600;color:var(--w85);line-height:1.3}
+.ciss{font-size:.7rem;color:var(--w20);margin-top:2px}
+.credly-btn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-family:"Share Tech Mono",monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border:1px solid rgba(255,150,50,.25);color:rgba(255,150,50,.8);background:rgba(255,150,50,.05);text-decoration:none;transition:all .22s;width:100%;justify-content:center;cursor:pointer}
+.credly-btn:hover{background:rgba(255,150,50,.12);border-color:rgba(255,150,50,.5);color:rgba(255,165,60,1);transform:translateY(-1px)}
+.credly-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,150,50,.7);flex-shrink:0}
+
+/* ── SKILLS ── */
+#skills{padding:110px 0;background:var(--bg2);border-top:1px solid var(--w07);border-bottom:1px solid var(--w07)}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.scat{background:var(--card);border:1px solid var(--w07);padding:24px;position:relative;overflow:hidden;transition:border-color .25s,transform .25s,background .25s}
+.scat::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--w25),transparent);opacity:0;transition:opacity .25s}
+.scat:hover{border-color:var(--w17);transform:translateY(-4px);background:var(--card2)}
+.scat:hover::before{opacity:1}
+.sc-ico{font-size:1.35rem;margin-bottom:12px;display:block}
+.sc-ttl{font-family:"Share Tech Mono",monospace;font-size:.7rem;color:var(--w55);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--w07)}
+.stags{display:flex;flex-wrap:wrap;gap:6px}
+.sk{font-family:"Share Tech Mono",monospace;font-size:.67rem;padding:4px 9px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);color:var(--w44);letter-spacing:.04em;transition:all .2s;cursor:default}
+.sk:hover{background:rgba(255,255,255,.08);color:var(--w85);border-color:var(--w17)}
+.sk.hot{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16);color:var(--w85)}
+.sprof{margin-top:16px;display:flex;flex-direction:column;gap:9px}
+.prow{display:flex;align-items:center;gap:10px}
+.plbl{font-family:"Share Tech Mono",monospace;font-size:.63rem;color:var(--w20);letter-spacing:.06em;width:82px;flex-shrink:0;text-transform:uppercase}
+.ptrack{flex:1;height:3px;background:rgba(255,255,255,.07);position:relative;overflow:hidden}
+.pfill{position:absolute;top:0;left:0;height:100%;background:var(--w85);transform:scaleX(0);transform-origin:left;transition:transform 1s ease .3s}
+.ptrack.visible .pfill{transform:scaleX(1)}
+.ppct{font-family:"Share Tech Mono",monospace;font-size:.6rem;color:var(--w20);width:28px;text-align:right;flex-shrink:0}
+
+/* ── TRYHACKME ── */
+#tryhackme{padding:110px 0;background:var(--bg2);border-top:1px solid var(--w07);border-bottom:1px solid var(--w07)}
+.thm-wrap{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;margin-top:40px}
+.thm-badge-col{display:flex;flex-direction:column;align-items:center;gap:16px;flex:0 0 auto}
+.thm-badge-link{display:inline-block;transition:transform .25s,box-shadow .25s;border-radius:10px}
+.thm-badge-link:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.4)}
+.thm-badge-img{width:280px;max-width:100%;height:auto;border-radius:10px;display:block;border:1px solid var(--w07)}
+.thm-fallback{width:280px;background:var(--card);border:1px solid var(--w07);border-radius:10px;padding:24px;text-align:center;font-family:"Share Tech Mono",monospace}
+.thm-fallback-icon{font-size:2.5rem;margin-bottom:12px}
+.thm-fallback-name{font-size:.9rem;color:var(--w85);font-weight:700;margin-bottom:4px}
+.thm-fallback-sub{font-size:.72rem;color:var(--w44)}
+.thm-stats-col{flex:1;min-width:260px}
+.thm-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.thm-stat{background:var(--card);border:1px solid var(--w07);padding:20px;transition:all .25s;cursor:default}
+.thm-stat:hover{border-color:var(--w17);background:var(--card2);transform:translateY(-3px)}
+.thm-stat-val{font-family:"Share Tech Mono",monospace;font-size:1.6rem;color:var(--w85);font-weight:700;display:block;margin-bottom:4px}
+.thm-stat-lbl{font-size:.72rem;color:var(--w44);text-transform:uppercase;letter-spacing:.08em}
+.thm-profile-link{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-family:"Share Tech Mono",monospace;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;padding:11px 22px;border:1px solid rgba(0,200,100,.25);color:rgba(0,220,110,.8);background:rgba(0,200,100,.05);text-decoration:none;transition:all .25s;cursor:pointer}
+.thm-profile-link:hover{background:rgba(0,200,100,.12);border-color:rgba(0,220,110,.5);color:rgba(0,240,120,1);transform:translateY(-2px)}
+
+/* ── SIMULATION ── */
+#simulation{padding:110px 0}
+.sim-box{max-width:680px;margin:40px auto 0;background:var(--card);border:1px solid var(--w07);padding:36px}
+.sim-desc{font-size:.92rem;color:var(--w44);line-height:1.72;margin-bottom:24px}
+.sim-input{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--w17);color:var(--w85);font-family:"Share Tech Mono",monospace;font-size:.82rem;padding:12px 16px;outline:none;transition:border-color .2s;margin-bottom:14px}
+.sim-input::placeholder{color:var(--w20)}
+.sim-input:focus{border-color:rgba(255,255,255,.35)}
+.sim-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:var(--w85);color:var(--bg);font-family:"Share Tech Mono",monospace;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;transition:all .25s;font-weight:700}
+.sim-btn:hover{background:rgba(255,255,255,.75);transform:translateY(-2px)}
+.sim-result{margin-top:20px;padding:14px 18px;font-family:"Share Tech Mono",monospace;font-size:.82rem;display:none;border-left:3px solid}
+.sim-result.danger{background:rgba(255,87,87,.1);border-color:#ff5757;color:#ff9999}
+.sim-result.safe{background:rgba(100,220,130,.08);border-color:#64dc82;color:#64dc82}
+
+/* ── PROJECTS ── */
+#projects{padding:110px 0}
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+/* Full card hover — but buttons inside get their own click */
+.pcard{background:var(--card);border:1px solid var(--w07);padding:28px;position:relative;overflow:hidden;transition:all .3s;display:flex;flex-direction:column;cursor:default}
+.pcard::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--w25),rgba(255,255,255,.08));transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.pcard:hover{border-color:var(--w17);background:var(--card2);transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.55)}
+.pcard:hover::after{transform:scaleX(1)}
+.pnum{font-family:"Share Tech Mono",monospace;font-size:.66rem;color:var(--w20);letter-spacing:.15em;margin-bottom:13px}
+.ptitle{font-size:1.08rem;font-weight:700;color:var(--w85);line-height:1.3;margin-bottom:11px}
+.pdesc{font-size:.85rem;color:var(--w44);line-height:1.72;flex:1;margin-bottom:18px}
+.pmets{display:flex;gap:14px;margin-bottom:18px}
+.met{text-align:center;padding:9px 13px;background:rgba(255,255,255,.03);border:1px solid var(--w07);flex:1}
+.mv{display:block;font-family:"Share Tech Mono",monospace;font-size:1.02rem;color:var(--w85);font-weight:700}
+.ml{display:block;font-size:.64rem;color:var(--w20);text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
+.ptools{display:flex;flex-wrap:wrap;gap:5px}
+.ttag{font-family:"Share Tech Mono",monospace;font-size:.65rem;padding:3px 8px;background:transparent;border:1px solid rgba(255,255,255,.1);color:var(--w55);letter-spacing:.05em}
+/* TryHackMe link inside card - fully clickable, isolated from card hover */
+.thm{display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-family:"Share Tech Mono",monospace;font-size:.68rem;letter-spacing:.07em;color:var(--w44);text-decoration:none;padding:8px 14px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);transition:all .22s;align-self:flex-start;cursor:pointer;position:relative;z-index:5;pointer-events:auto !important}
+.thm:hover{color:rgba(255,107,53,.95);border-color:rgba(255,107,53,.4);background:rgba(255,107,53,.07);transform:translateY(-1px)}
+.thm-d{width:7px;height:7px;border-radius:50%;background:rgba(255,107,53,.7);flex-shrink:0}
+.pcard.feat{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:center}
+.fbadge{display:inline-flex;align-items:center;gap:6px;font-family:"Share Tech Mono",monospace;font-size:.62rem;color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.12);padding:3px 9px;letter-spacing:.1em;margin-bottom:13px}
+.flist{display:flex;flex-direction:column;gap:11px}
+.fitem{display:flex;align-items:center;gap:11px;padding:10px 14px;background:rgba(255,255,255,.02);border:1px solid var(--w07);border-left:2px solid rgba(255,255,255,.18);font-size:.81rem;color:var(--w44)}
+.sev{font-family:"Share Tech Mono",monospace;font-size:.62rem;padding:2px 7px;letter-spacing:.08em;flex-shrink:0}
+.sev.c{background:rgba(255,87,87,.13);color:var(--red);border:1px solid rgba(255,87,87,.26)}
+.sev.h{background:rgba(255,140,66,.11);color:var(--orange);border:1px solid rgba(255,140,66,.22)}
+.sev.m{background:rgba(255,213,79,.08);color:var(--yellow);border:1px solid rgba(255,213,79,.2)}
+
+/* ── EDUCATION ── */
+#education{padding:110px 0;background:var(--bg2);border-top:1px solid var(--w07);border-bottom:1px solid var(--w07)}
+.etl{display:flex;flex-direction:column;position:relative;padding-left:30px}
+.etl::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:1px;background:linear-gradient(to bottom,var(--w25),transparent)}
+.ei{position:relative;padding:28px 0 28px 38px;border-bottom:1px solid var(--w07);transition:background .25s}
+.ei:last-child{border-bottom:none}
+.ei:hover{background:rgba(255,255,255,.015)}
+.edot{position:absolute;left:-34px;top:34px;width:8px;height:8px;border-radius:50%;background:var(--w55);box-shadow:0 0 9px rgba(255,255,255,.2)}
+.eyr{font-family:"Share Tech Mono",monospace;font-size:.69rem;color:var(--w55);letter-spacing:.12em;margin-bottom:8px}
+.edeg{font-size:1.08rem;font-weight:700;color:var(--w85);margin-bottom:5px}
+.esch{font-size:.87rem;color:var(--w44);margin-bottom:9px}
+.emeta{display:flex;gap:10px;flex-wrap:wrap}
+.etag{font-family:"Share Tech Mono",monospace;font-size:.67rem;color:var(--w20);padding:4px 9px;border:1px solid var(--w07)}
+.ecgpa{font-family:"Share Tech Mono",monospace;font-size:.67rem;color:var(--w85);padding:4px 9px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04)}
+
+/* ── CONTACT ── */
+#contact{padding:110px 0}
+.cw{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:start}
+.cl-links{display:flex;flex-direction:column;gap:11px;margin-top:30px}
+/* FULL-BOX clickable contact cards */
+.cl-a{display:flex;align-items:center;gap:13px;padding:16px 20px;background:var(--card);border:1px solid var(--w07);text-decoration:none;color:var(--w85);transition:background .25s,border-color .25s,box-shadow .25s;cursor:pointer;width:100%;-webkit-user-select:none;user-select:none;outline:none}
+.cl-a:hover,.cl-a:focus-visible{border-color:rgba(255,255,255,.35) !important;background:var(--card2) !important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15),0 4px 24px rgba(0,0,0,.4) !important}
+.cl-a:active{transform:translateX(3px);background:rgba(255,255,255,.06)}
+.cl-ico{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.06);border:1px solid var(--w17);font-size:.9rem;flex-shrink:0;color:var(--w85);transition:all .3s;font-weight:700}
+.cl-a:hover .cl-ico{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3)}
+.cl-txt{flex:1}
+.cl-lbl{font-size:.69rem;color:var(--w44);margin-bottom:3px;text-transform:uppercase;letter-spacing:.1em;font-family:"Share Tech Mono",monospace}
+.cl-val{font-size:.92rem;color:var(--w85);font-weight:600}
+.cl-arr{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border:1px solid var(--w07);color:var(--w44);font-size:1rem;transition:all .3s;flex-shrink:0}
+.cl-a:hover .cl-arr{color:var(--w85);border-color:var(--w17);background:rgba(255,255,255,.06)}
+
+/* LinkedIn CTA */
+.licta{background:var(--card);border:1px solid var(--w07);padding:36px 36px 28px;text-align:center;position:relative;overflow:visible}
+.licta::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% -10%,rgba(0,119,181,.12),transparent 58%);pointer-events:none;z-index:0}
+.lilogo{width:52px;height:52px;background:#0077B5;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:1.3rem;font-weight:900;color:white;font-family:"Outfit",sans-serif;position:relative;z-index:1}
+.licta h3{font-size:1.25rem;font-weight:700;margin-bottom:10px;color:var(--w85);position:relative;z-index:1}
+.licta>p{font-size:.86rem;color:var(--w44);line-height:1.64;margin-bottom:24px;position:relative;z-index:1}
+.btnli{display:inline-flex;align-items:center;gap:9px;padding:14px 30px;background:#0077B5;color:white;font-family:"Share Tech Mono",monospace;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .25s;font-weight:600;width:100%;justify-content:center;position:relative;z-index:1;cursor:pointer}
+.btnli:hover{background:#005fa0;box-shadow:0 0 28px rgba(0,119,181,.35);transform:translateY(-2px)}
+.linote{font-size:.71rem;color:var(--w44);margin-top:14px;position:relative;z-index:1}
+
+/* SOCIAL ICONS - fully clickable */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ── FOOTER ── */
+footer{position:relative;z-index:1;padding:26px 0;border-top:1px solid var(--w07)}
+.fi{display:flex;align-items:center;justify-content:space-between}
+.flogo{font-family:"Share Tech Mono",monospace;font-size:.8rem;color:var(--w55);letter-spacing:.08em}
+.fcopy{font-size:.74rem;color:var(--w20);font-family:"Share Tech Mono",monospace}
+.flinks{display:flex;gap:20px}
+.flinks a{font-family:"Share Tech Mono",monospace;font-size:.69rem;color:var(--w20);text-decoration:none;letter-spacing:.08em;transition:color .2s;cursor:pointer}
+.flinks a:hover{color:var(--w85)}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.rv.on{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){.nav-links{gap:20px}}
+@media(max-width:900px){
+  nav{padding:0 22px}
+  .nav-links{display:none}
+  .h-inner{grid-template-columns:1fr;gap:44px;padding:0 20px}
+  .h-photo{order:-1}
+  .ag{grid-template-columns:1fr;gap:34px}
+  .sgrid{grid-template-columns:1fr 1fr}
+  .pgrid{grid-template-columns:1fr}
+  .pcard.feat{grid-column:span 1;grid-template-columns:1fr}
+  .cw{grid-template-columns:1fr}
+  .etl{padding-left:22px}
+  .edot{left:-27px}
+  .fi{flex-direction:column;gap:13px}
+  .container{padding:0 20px}
+  .thm-wrap{flex-direction:column}
+  .thm-stats-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .sgrid{grid-template-columns:1fr}
+  .h-stats{gap:16px;flex-wrap:wrap}
+  .thm-stats-grid{grid-template-columns:1fr 1fr}
+}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14)}
+::selection{background:rgba(255,255,255,.11);color:var(--w85)}
+
+
+/* ═══ SOCIAL SECTION — ID-based, unoverridable ═══ */
+#social-wrap{
+  padding:80px 0;
+  background:#0f0f12;
+  border-top:1px solid rgba(255,255,255,0.07);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+}
+#social-inner{
+  max-width:1140px;
+  margin:0 auto;
+  padding:0 40px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:36px;
+}
+#social-title{
+  font-family:'Share Tech Mono',monospace;
+  font-size:0.72rem;
+  color:rgba(255,255,255,0.45);
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  gap:20px;
+  width:100%;
+}
+#social-title::before,#social-title::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:rgba(255,255,255,0.1);
+}
+#social-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+  justify-content:center;
+}
+/* Base button */
+#sb-ig,#sb-tw,#sb-li,#sb-fb{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:12px !important;
+  padding:15px 28px !important;
+  min-width:165px !important;
+  justify-content:center !important;
+  border:1px solid rgba(255,255,255,0.18) !important;
+  background:#141417 !important;
+  color:rgba(255,255,255,0.7) !important;
+  text-decoration:none !important;
+  font-family:'Share Tech Mono',monospace !important;
+  font-size:0.78rem !important;
+  letter-spacing:0.1em !important;
+  text-transform:uppercase !important;
+  cursor:pointer !important;
+  transition:border-color 0.25s,background 0.25s,color 0.25s,box-shadow 0.25s,transform 0.25s !important;
+  position:relative !important;
+  z-index:1 !important;
+  outline:none !important;
+  -webkit-tap-highlight-color:transparent !important;
+}
+/* SVG inside buttons */
+#sb-ig svg,#sb-tw svg,#sb-li svg,#sb-fb svg{
+  width:19px !important;
+  height:19px !important;
+  fill:rgba(255,255,255,0.55) !important;
+  flex-shrink:0 !important;
+  display:block !important;
+  transition:fill 0.25s !important;
+  pointer-events:none !important;
+}
+/* Instagram hover */
+#sb-ig:hover{
+  border-color:#e1306c !important;
+  background:rgba(225,48,108,0.14) !important;
+  color:#e1306c !important;
+  box-shadow:0 6px 24px rgba(225,48,108,0.28) !important;
+  transform:translateY(-4px) !important;
+}
+#sb-ig:hover svg{fill:#e1306c !important}
+/* X / Twitter hover */
+#sb-tw:hover{
+  border-color:#ffffff !important;
+  background:rgba(255,255,255,0.1) !important;
+  color:#ffffff !important;
+  box-shadow:0 6px 24px rgba(255,255,255,0.12) !important;
+  transform:translateY(-4px) !important;
+}
+#sb-tw:hover svg{fill:#ffffff !important}
+/* LinkedIn hover */
+#sb-li:hover{
+  border-color:#0ea5e9 !important;
+  background:rgba(14,165,233,0.14) !important;
+  color:#0ea5e9 !important;
+  box-shadow:0 6px 24px rgba(14,165,233,0.28) !important;
+  transform:translateY(-4px) !important;
+}
+#sb-li:hover svg{fill:#0ea5e9 !important}
+/* Facebook hover */
+#sb-fb:hover{
+  border-color:#1877f2 !important;
+  background:rgba(24,119,242,0.14) !important;
+  color:#1877f2 !important;
+  box-shadow:0 6px 24px rgba(24,119,242,0.28) !important;
+  transform:translateY(-4px) !important;
+}
+#sb-fb:hover svg{fill:#1877f2 !important}
+@media(max-width:600px){
+  #sb-ig,#sb-tw,#sb-li,#sb-fb{min-width:140px !important;padding:13px 20px !important}
+}
+
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash">
+  <div class="inner">
+    <div class="s-ring"><img src="profile.jpg" alt="Udaykumar Kotipalli"></div>
+    <div class="s-status"><span class="s-dot"></span>Open to Work &nbsp;&middot;&nbsp; Security Analyst</div>
+    <h1 class="s-name">Udaykumar <span>Kotipalli</span></h1>
+    <p class="s-sub">Cybersecurity Analyst &nbsp;/&nbsp; VAPT Specialist &nbsp;/&nbsp; SOC Operator</p>
+    <div class="s-line"></div>
+    <div class="s-chips">
+      <span class="s-chip">Threat Detection</span><span class="s-chip">Splunk &middot; SIEM</span>
+      <span class="s-chip">VAPT</span><span class="s-chip">Incident Response</span>
+      <span class="s-chip">Wireshark</span><span class="s-chip">Nmap &middot; Metasploit</span>
+      <span class="s-chip">Python Automation</span><span class="s-chip">AWS Security</span>
+    </div>
+    <div class="s-cue"><span>Scroll to explore</span><span class="s-arr">&#8595;</span></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">udaykumar<span>.k</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#tryhackme">TryHackMe</a></li>
+    <li><a href="#simulation">Simulation</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#social">Social</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-r">
+    <a href="Udaykumar_K_Cybersecurity_Analyst.pdf" target="_blank" rel="noopener" class="nav-res">&#8599; Resume</a>
+    <a href="https://www.linkedin.com/in/udaykumar-kotipalli" target="_blank" rel="noopener noreferrer" class="nav-cta">Connect &#8599;</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="h-inner">
+    <div>
+      <div class="h-tag">Cybersecurity Analyst</div>
+      <h1 class="h-name">Udaykumar<br><span class="dim">Kotipalli</span></h1>
+      <p class="h-title">Security Analyst &amp; VAPT Specialist<span class="blink"></span></p>
+      <p class="h-bio">Security analyst specialising in threat detection, vulnerability management, and incident response. Building robust defensive security postures through proactive monitoring, SIEM operations, and continuous improvement &mdash; based in Hyderabad, India.</p>
+      <div class="h-actions">
+        <a href="https://www.linkedin.com/in/udaykumar-kotipalli" target="_blank" rel="noopener noreferrer" class="btn-p">View LinkedIn &#8599;</a>
+        <a href="#projects" class="btn-o">See Projects</a>
+        <a href="Udaykumar_K_Cybersecurity_Analyst.pdf" target="_blank" rel="noopener" class="btn-r" title="View or Download Resume">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M7 1v8M4 6l3 3 3-3M2 11h10"/></svg>
+          Resume
+        </a>
+      </div>
+      <div class="h-stats">
+        <div><span class="sv">8+</span><span class="sl">Critical CVEs</span></div>
+        <div><span class="sv">10K+</span><span class="sl">Packets Analysed</span></div>
+        <div><span class="sv">40%</span><span class="sl">Efficiency Gain</span></div>
+        <div><span class="sv">4</span><span class="sl">Certifications</span></div>
+      </div>
+    </div>
+    <div class="h-photo">
+      <div class="h-ring"><img src="profile.jpg" alt="Udaykumar Kotipalli"></div>
+      <div class="h-ftags">
+        <span class="ftag">Hyderabad, India</span>
+        <span class="ftag">B.Tech CSE</span>
+        <span class="ftag">&#9679; Open to Work</span>
+        <span class="ftag">Cisco Certified</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="sh rv"><div class="stag">01 &mdash; Profile</div><h2 class="stitle">About <span class="dim">Me</span></h2></div>
+    <div class="ag">
+      <div class="rv">
+        <div class="atext">
+          <p>I&rsquo;m a <strong>cybersecurity analyst and VAPT specialist</strong> with a strong foundation in threat monitoring, vulnerability assessment, and security operations. My hands-on experience spans SIEM tooling, penetration testing, network security analysis, and building Python-based security automation tools.</p>
+          <p>With a <strong>B.Tech in Computer Science &amp; Engineering</strong> and multiple industry certifications, I bring both theoretical depth and practical skills to every security challenge &mdash; from analysing 10,000+ network packets to identifying and reporting critical CVEs.</p>
+          <p>Passionate about <strong>proactive defence</strong> &mdash; building systems that detect threats before they become incidents and continuously improving security posture through data-driven analysis and actionable reporting.</p>
+        </div>
+        <div class="ahls">
+          <div class="ahl"><div class="ahl-ico">&#128269;</div><div><div class="ahl-h">Threat Detection &amp; SIEM</div><div class="ahl-p">Configured Splunk for centralised log ingestion, custom alerts, dashboards, and correlation rules across multi-source environments.</div></div></div>
+          <div class="ahl"><div class="ahl-ico">&#128737;&#65039;</div><div><div class="ahl-h">Vulnerability Assessment &amp; Pen Testing</div><div class="ahl-p">Conducted comprehensive VAPT engagements identifying 15+ open services and 8 critical/high-severity vulnerabilities with CVSS-rated reports.</div></div></div>
+          <div class="ahl"><div class="ahl-ico">&#128013;</div><div><div class="ahl-h">Security Automation</div><div class="ahl-p">Developed Python-based multi-threaded network scanner with 40% efficiency gain through parallel processing and service fingerprinting.</div></div></div>
+        </div>
+      </div>
+      <div class="aside">
+        <div class="icard rv d1">
+          <h3>// Quick Info</h3>
+          <div class="irow"><span class="ilbl">Location</span><span class="ival">Hyderabad, India</span></div>
+          <div class="irow"><span class="ilbl">Degree</span><span class="ival">B.Tech CSE</span></div>
+          <div class="irow"><span class="ilbl">CGPA</span><span class="ival">6.86 / 10</span></div>
+          <div class="irow"><span class="ilbl">Focus</span><span class="ival">Defensive Security</span></div>
+          <div class="irow"><span class="ilbl">Status</span><span class="ival" style="color:rgba(255,255,255,.65)">Open to Work</span></div>
+        </div>
+        <div class="icard rv d2">
+          <h3>// Certifications</h3>
+          <div class="cbadge"><div class="cico">&#127963;&#65039;</div><div class="cinfo"><div class="cname">Certified Ethical Hacker</div><div class="ciss">Cisco Networking Academy</div></div></div>
+          <div class="cbadge"><div class="cico">&#127760;</div><div class="cinfo"><div class="cname">Networking Essentials</div><div class="ciss">Cisco Networking Academy</div></div></div>
+          <div class="cbadge"><div class="cico">&#128188;</div><div class="cinfo"><div class="cname">Cybersecurity Analyst Simulation</div><div class="ciss">TATA Forage</div></div></div>
+          <div class="cbadge"><div class="cico">&#128311;</div><div class="cinfo"><div class="cname">Cybersecurity Fundamentals</div><div class="ciss">IBM SkillsBuild</div></div></div>
+          <a href="https://www.credly.com/users/udaykumar-kotipalli" target="_blank" rel="noopener noreferrer" class="credly-btn"><span class="credly-dot"></span>View All on Credly &#8599;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="sh rv"><div class="stag">02 &mdash; Arsenal</div><h2 class="stitle">Technical <span class="dim">Skills</span></h2></div>
+    <div class="sgrid">
+      <div class="scat rv d1"><span class="sc-ico">&#128300;</span><div class="sc-ttl">// Security Operations</div><div class="stags"><span class="sk hot">Threat Detection</span><span class="sk hot">SIEM &middot; Splunk</span><span class="sk">Log Analysis</span><span class="sk">Alert Triage</span><span class="sk">Incident Response</span><span class="sk">IOC Analysis</span><span class="sk">Security Correlation</span><span class="sk">Vulnerability Mgmt</span></div><div class="sprof"><div class="prow"><span class="plbl">Threat Intel</span><div class="ptrack"><div class="pfill" style="width:82%"></div></div><span class="ppct">82%</span></div><div class="prow"><span class="plbl">Splunk SIEM</span><div class="ptrack"><div class="pfill" style="width:75%"></div></div><span class="ppct">75%</span></div><div class="prow"><span class="plbl">IR Process</span><div class="ptrack"><div class="pfill" style="width:70%"></div></div><span class="ppct">70%</span></div></div></div>
+      <div class="scat rv d2"><span class="sc-ico">&#9876;&#65039;</span><div class="sc-ttl">// Offensive Security</div><div class="stags"><span class="sk hot">Penetration Testing</span><span class="sk hot">Vulnerability Assessment</span><span class="sk">OWASP Top 10</span><span class="sk">CVE Research</span><span class="sk">Exploit Analysis</span><span class="sk">Recon &amp; Enumeration</span><span class="sk">Attack Surface Analysis</span><span class="sk">Manual Testing</span></div><div class="sprof"><div class="prow"><span class="plbl">VAPT</span><div class="ptrack"><div class="pfill" style="width:80%"></div></div><span class="ppct">80%</span></div><div class="prow"><span class="plbl">OWASP</span><div class="ptrack"><div class="pfill" style="width:78%"></div></div><span class="ppct">78%</span></div><div class="prow"><span class="plbl">CVE Research</span><div class="ptrack"><div class="pfill" style="width:72%"></div></div><span class="ppct">72%</span></div></div></div>
+      <div class="scat rv d3"><span class="sc-ico">&#128295;</span><div class="sc-ttl">// Security Tools</div><div class="stags"><span class="sk hot">Nmap</span><span class="sk hot">Wireshark</span><span class="sk hot">Burp Suite</span><span class="sk">Metasploit</span><span class="sk">Kali Linux</span><span class="sk">Exploit-DB</span><span class="sk">OWASP ZAP</span><span class="sk">tcpdump</span><span class="sk">NetworkMiner</span></div><div class="sprof"><div class="prow"><span class="plbl">Nmap</span><div class="ptrack"><div class="pfill" style="width:85%"></div></div><span class="ppct">85%</span></div><div class="prow"><span class="plbl">Wireshark</span><div class="ptrack"><div class="pfill" style="width:82%"></div></div><span class="ppct">82%</span></div><div class="prow"><span class="plbl">Burp Suite</span><div class="ptrack"><div class="pfill" style="width:75%"></div></div><span class="ppct">75%</span></div></div></div>
+      <div class="scat rv d1"><span class="sc-ico">&#9729;&#65039;</span><div class="sc-ttl">// Cloud &amp; Infrastructure</div><div class="stags"><span class="sk">AWS EC2 / S3</span><span class="sk">IAM &amp; Access Control</span><span class="sk">Active Directory</span><span class="sk">Firewalls</span><span class="sk">VPNs / ACLs</span><span class="sk">DNS Security</span><span class="sk">Endpoint Security</span><span class="sk">System Hardening</span></div><div class="sprof"><div class="prow"><span class="plbl">AWS</span><div class="ptrack"><div class="pfill" style="width:65%"></div></div><span class="ppct">65%</span></div><div class="prow"><span class="plbl">Active Dir.</span><div class="ptrack"><div class="pfill" style="width:72%"></div></div><span class="ppct">72%</span></div><div class="prow"><span class="plbl">Firewalls</span><div class="ptrack"><div class="pfill" style="width:75%"></div></div><span class="ppct">75%</span></div></div></div>
+      <div class="scat rv d2"><span class="sc-ico">&#127760;</span><div class="sc-ttl">// Networking &amp; Protocols</div><div class="stags"><span class="sk">TCP/IP &middot; OSI Model</span><span class="sk">Subnetting &middot; VLANs</span><span class="sk">Routing &middot; OSPF/EIGRP</span><span class="sk">HTTP/HTTPS &middot; DNS</span><span class="sk">Packet Analysis</span><span class="sk">Cisco IOS</span><span class="sk">Cisco Packet Tracer</span></div><div class="sprof"><div class="prow"><span class="plbl">TCP/IP</span><div class="ptrack"><div class="pfill" style="width:85%"></div></div><span class="ppct">85%</span></div><div class="prow"><span class="plbl">Subnetting</span><div class="ptrack"><div class="pfill" style="width:78%"></div></div><span class="ppct">78%</span></div><div class="prow"><span class="plbl">Cisco IOS</span><div class="ptrack"><div class="pfill" style="width:70%"></div></div><span class="ppct">70%</span></div></div></div>
+      <div class="scat rv d3"><span class="sc-ico">&#128187;</span><div class="sc-ttl">// Programming &amp; Scripting</div><div class="stags"><span class="sk hot">Python (Security Automation)</span><span class="sk">Bash Scripting</span><span class="sk">SQL (Log Analysis)</span><span class="sk">Java</span><span class="sk">HTML / CSS / JS</span><span class="sk">Linux CLI</span><span class="sk">PowerShell</span></div><div class="sprof"><div class="prow"><span class="plbl">Python</span><div class="ptrack"><div class="pfill" style="width:80%"></div></div><span class="ppct">80%</span></div><div class="prow"><span class="plbl">Bash</span><div class="ptrack"><div class="pfill" style="width:68%"></div></div><span class="ppct">68%</span></div><div class="prow"><span class="plbl">SQL</span><div class="ptrack"><div class="pfill" style="width:65%"></div></div><span class="ppct">65%</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRYHACKME PROFILE -->
+<section id="tryhackme">
+  <div class="container">
+    <div class="sh rv"><div class="stag">02.5 &mdash; Platform</div><h2 class="stitle">TryHackMe <span class="dim">Profile</span></h2></div>
+    <p class="rv" style="color:var(--w44);font-size:.95rem;line-height:1.72;max-width:640px;margin-bottom:0">Verified TryHackMe profile showcasing completed rooms, learning paths, and ranked performance across offensive and defensive security challenges.</p>
+    <div class="thm-wrap rv">
+      <div class="thm-badge-col">
+        <a href="https://tryhackme.com/p/Udaykumarr" target="_blank" rel="noopener noreferrer" class="thm-badge-link">
+          <img
+            src="https://tryhackme-badges.s3.amazonaws.com/Udaykumarr.png"
+            alt="TryHackMe Badge"
+            class="thm-badge-img"
+            onerror="this.onerror=null;this.src='';this.parentElement.innerHTML='<div class=thm-fallback><div class=thm-fallback-icon>&#128737;</div><div class=thm-fallback-name>Udaykumarr</div><div class=thm-fallback-sub>TryHackMe Member</div></div>'"
+          >
+        </a>
+        <a href="https://tryhackme.com/p/Udaykumarr" target="_blank" rel="noopener noreferrer" class="thm-profile-link">
+          View Full Profile &#8599;
+        </a>
+      </div>
+      <div class="thm-stats-col">
+        <div class="thm-stats-grid">
+          <div class="thm-stat rv d1"><span class="thm-stat-val">50+</span><span class="thm-stat-lbl">Rooms Completed</span></div>
+          <div class="thm-stat rv d2"><span class="thm-stat-val">Top 8%</span><span class="thm-stat-lbl">Global Rank</span></div>
+          <div class="thm-stat rv d1"><span class="thm-stat-val">12+</span><span class="thm-stat-lbl">Badges Earned</span></div>
+          <div class="thm-stat rv d2"><span class="thm-stat-val">450+</span><span class="thm-stat-lbl">Points Scored</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CYBER ATTACK SIMULATION -->
+<section id="simulation">
+  <div class="container">
+    <div class="sh rv"><div class="stag">03 &mdash; Interactive</div><h2 class="stitle">Cyber Attack <span class="dim">Simulation</span></h2></div>
+    <div class="sim-box rv">
+      <p class="sim-desc">
+        This demo simulates <strong style="color:var(--w85)">XSS (Cross-Site Scripting)</strong> input detection &mdash; one of the OWASP Top 10 vulnerabilities. Enter any payload below and click <em>Run Simulation</em> to see how a real security filter responds.
+      </p>
+      <input type="text" id="simInput" class="sim-input" placeholder="Try typing: &lt;script&gt;alert('XSS')&lt;/script&gt;" autocomplete="off" spellcheck="false">
+      <button class="sim-btn" onclick="runSim()">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 2l8 5-8 5V2z"/></svg>
+        Run Simulation
+      </button>
+      <div id="simResult" class="sim-result"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="sh rv"><div class="stag">04 &mdash; Work</div><h2 class="stitle">Security <span class="dim">Projects</span></h2></div>
+    <div class="pgrid">
+      <div class="pcard feat rv">
+        <div>
+          <div class="fbadge">&#9733; FEATURED PROJECT</div>
+          <div class="pnum">// PROJECT_01 &middot; 2025</div>
+          <h3 class="ptitle">Vulnerability Assessment &amp; Penetration Testing (VAPT)</h3>
+          <p class="pdesc">Comprehensive security assessment using industry-standard VAPT methodologies. Performed reconnaissance, enumeration, and manual penetration testing &mdash; mapping all findings to OWASP Top 10 and CIS controls with full CVSS scoring and proof-of-concept exploits.</p>
+          <div class="pmets"><div class="met"><span class="mv">15+</span><span class="ml">Open Services</span></div><div class="met"><span class="mv">8</span><span class="ml">Critical/High CVEs</span></div><div class="met"><span class="mv">100%</span><span class="ml">CVSS Scored</span></div></div>
+          <div class="ptools"><span class="ttag">Nmap</span><span class="ttag">Metasploit</span><span class="ttag">Burp Suite</span><span class="ttag">Kali Linux</span><span class="ttag">Exploit-DB</span></div>
+          <a href="https://tryhackme.com/p/Udaykumarr" target="_blank" rel="noopener noreferrer" class="thm"><span class="thm-d"></span>View on TryHackMe</a>
+        </div>
+        <div class="flist">
+          <div class="fitem"><span class="sev c">CRITICAL</span>Remote Code Execution via unpatched service</div>
+          <div class="fitem"><span class="sev c">CRITICAL</span>SQL Injection &mdash; unauthenticated DB access</div>
+          <div class="fitem"><span class="sev h">HIGH</span>Misconfigured SSH allowing brute-force</div>
+          <div class="fitem"><span class="sev h">HIGH</span>Exposed admin panel with default credentials</div>
+          <div class="fitem"><span class="sev m">MEDIUM</span>Outdated web framework with known CVEs</div>
+        </div>
+      </div>
+      <div class="pcard rv d1"><div class="pnum">// PROJECT_02 &middot; 2025</div><h3 class="ptitle">Network Traffic Analysis &amp; Threat Detection</h3><p class="pdesc">Deep packet inspection across 10,000+ packets to identify SQL injection, port scanning, and data exfiltration. Custom Wireshark filters for rapid IOC identification with full attack timeline documentation.</p><div class="pmets"><div class="met"><span class="mv">10K+</span><span class="ml">Packets</span></div><div class="met"><span class="mv">DoS/MitM</span><span class="ml">Threats Found</span></div></div><div class="ptools"><span class="ttag">Wireshark</span><span class="ttag">tcpdump</span><span class="ttag">NetworkMiner</span><span class="ttag">Tshark</span></div><a href="https://tryhackme.com/p/Udaykumarr" target="_blank" rel="noopener noreferrer" class="thm"><span class="thm-d"></span>View on TryHackMe</a></div>
+      <div class="pcard rv d2"><div class="pnum">// PROJECT_03 &middot; 2025</div><h3 class="ptitle">Custom Vulnerability Assessment Automation Tool</h3><p class="pdesc">Python-based network security scanner with multi-threaded TCP/UDP scanning, banner grabbing, and service fingerprinting. 40% efficiency improvement via parallel processing.</p><div class="pmets"><div class="met"><span class="mv">40%</span><span class="ml">Faster</span></div><div class="met"><span class="mv">TCP/UDP</span><span class="ml">Protocols</span></div></div><div class="ptools"><span class="ttag">Python</span><span class="ttag">Socket Programming</span><span class="ttag">Multi-threading</span></div><a href="https://tryhackme.com/p/Udaykumarr" target="_blank" rel="noopener noreferrer" class="thm"><span class="thm-d"></span>View on TryHackMe</a></div>
+      <div class="pcard rv d1"><div class="pnum">// PROJECT_04 &middot; 2025</div><h3 class="ptitle">Security Monitoring &amp; Defensive Operations (SOC)</h3><p class="pdesc">Configured Splunk for log ingestion from firewalls, servers, and network devices. Built custom dashboards and correlation rules. Simulated full SOC workflows including alert triage and AD access control.</p><div class="ptools"><span class="ttag">Splunk</span><span class="ttag">Windows Event Viewer</span><span class="ttag">Linux Logs</span><span class="ttag">Active Directory</span></div><a href="https://tryhackme.com/p/Udaykumarr" target="_blank" rel="noopener noreferrer" class="thm"><span class="thm-d"></span>View on TryHackMe</a></div>
+      <div class="pcard rv d2"><div class="pnum">// PROJECT_05 &middot; 2025</div><h3 class="ptitle">Network Infrastructure Configuration &amp; Administration</h3><p class="pdesc">Configured routers, switches, VLANs, ACLs, OSPF/EIGRP routing, and VPN. Set up DNS/DHCP services and documented full network topology for operational continuity.</p><div class="ptools"><span class="ttag">Cisco Packet Tracer</span><span class="ttag">Cisco IOS</span><span class="ttag">VLANs</span><span class="ttag">OSPF / EIGRP</span></div><a href="https://tryhackme.com/p/Udaykumarr" target="_blank" rel="noopener noreferrer" class="thm"><span class="thm-d"></span>View on TryHackMe</a></div>
+      <div class="pcard rv d3"><div class="pnum">// PROJECT_06 &middot; 2025</div><h3 class="ptitle">AWS Cloud Security Basics &amp; Configuration</h3><p class="pdesc">Hardened AWS EC2 instances with key-pair management. Applied S3 encryption and access policies. Reviewed IAM permissions and monitored CloudTrail activity logs.</p><div class="ptools"><span class="ttag">AWS EC2</span><span class="ttag">AWS S3</span><span class="ttag">IAM</span><span class="ttag">CloudTrail</span></div><a href="https://tryhackme.com/p/Udaykumarr" target="_blank" rel="noopener noreferrer" class="thm"><span class="thm-d"></span>View on TryHackMe</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="sh rv"><div class="stag">05 &mdash; Background</div><h2 class="stitle">Education <span class="dim">&amp; Training</span></h2></div>
+    <div class="etl">
+      <div class="ei rv"><div class="edot"></div><div class="eyr">2022 &mdash; 2025</div><div class="edeg">Bachelor of Technology &mdash; Computer Science &amp; Engineering</div><div class="esch">GIET Engineering College, JNTUK &middot; Rajahmundry, India</div><div class="emeta"><span class="ecgpa">CGPA: 6.86 / 10</span><span class="etag">Network Security</span><span class="etag">Cryptography</span><span class="etag">Operating Systems</span><span class="etag">Computer Networks</span></div></div>
+      <div class="ei rv d1"><div class="edot"></div><div class="eyr">2019 &mdash; 2022</div><div class="edeg">Diploma in Computer Engineering</div><div class="esch">Government Polytechnic &middot; Srikakulam, India</div><div class="emeta"><span class="ecgpa">CGPA: 7.26 / 10</span><span class="etag">Computer Engineering Fundamentals</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="cw">
+      <div class="rv">
+        <div class="stag">06 &mdash; Get In Touch</div>
+        <h2 style="font-size:clamp(1.75rem,3vw,2.45rem);font-weight:800;letter-spacing:-.02em;margin-bottom:17px">Let&rsquo;s <span style="color:var(--w55)">Connect</span></h2>
+        <p style="font-size:.95rem;color:var(--w44);line-height:1.76;margin-bottom:0">Actively seeking opportunities in cybersecurity &mdash; SOC analyst, penetration testing, or security engineering. If you&rsquo;re building a security team or have a challenging problem, let&rsquo;s talk.</p>
+        <div class="cl-links">
+          <a href="https://www.linkedin.com/in/udaykumar-kotipalli" target="_blank" rel="noopener noreferrer" class="cl-a">
+            <div class="cl-ico">in</div>
+            <div class="cl-txt"><div class="cl-lbl">LinkedIn</div><div class="cl-val">linkedin.com/in/udaykumar-kotipalli</div></div>
+            <div class="cl-arr">&#8599;</div>
+          </a>
+          <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#107;&#111;&#116;&#105;&#112;&#97;&#108;&#108;&#105;&#117;&#100;&#97;&#121;&#107;&#117;&#109;&#97;&#114;&#50;&#54;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="cl-a">
+            <div class="cl-ico">@</div>
+            <div class="cl-txt"><div class="cl-lbl">Email</div><div class="cl-val">kotipalliudaykumar26&#64;gmail.com</div></div>
+            <div class="cl-arr">&#8599;</div>
+          </a>
+          <a href="tel:+917382129156" class="cl-a">
+            <div class="cl-ico">&#9990;</div>
+            <div class="cl-txt"><div class="cl-lbl">Phone</div><div class="cl-val">+91 7382129156</div></div>
+            <div class="cl-arr">&#8599;</div>
+          </a>
+          <div class="cl-a" style="cursor:default;pointer-events:none">
+            <div class="cl-ico">&#128205;</div>
+            <div class="cl-txt"><div class="cl-lbl">Location</div><div class="cl-val">Hyderabad, Telangana, India</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="rv d2">
+        <div class="licta">
+          <div class="lilogo">in</div>
+          <h3>Reach Out on LinkedIn</h3>
+          <p>The best way to connect &mdash; view my full profile, endorsements, and send a direct message. I respond within 24 hours.</p>
+          <a href="https://www.linkedin.com/in/udaykumar-kotipalli" target="_blank" rel="noopener noreferrer" class="btnli">Connect on LinkedIn &#8599;</a>
+          <p class="linote">www.linkedin.com/in/udaykumar-kotipalli</p>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- SOCIAL MEDIA -->
+<style>
+.smb{display:inline-flex;align-items:center;gap:11px;padding:14px 26px;min-width:162px;justify-content:center;border:1px solid rgba(255,255,255,0.18);background:#141417;color:rgba(255,255,255,0.72);text-decoration:none;font-family:'Share Tech Mono',monospace;font-size:0.77rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.25s}
+.smb svg{width:18px;height:18px;flex-shrink:0;pointer-events:none;transition:fill 0.25s;fill:rgba(255,255,255,0.55)}
+.smb:hover{transform:translateY(-4px)}
+.smb-ig:hover{border-color:#e1306c !important;background:rgba(225,48,108,0.13) !important;color:#e1306c !important;box-shadow:0 6px 22px rgba(225,48,108,0.25)}
+.smb-ig:hover svg{fill:#e1306c !important}
+.smb-tw:hover{border-color:#fff !important;background:rgba(255,255,255,0.09) !important;color:#fff !important;box-shadow:0 6px 22px rgba(255,255,255,0.1)}
+.smb-tw:hover svg{fill:#fff !important}
+.smb-li:hover{border-color:#0ea5e9 !important;background:rgba(14,165,233,0.13) !important;color:#0ea5e9 !important;box-shadow:0 6px 22px rgba(14,165,233,0.25)}
+.smb-li:hover svg{fill:#0ea5e9 !important}
+.smb-fb:hover{border-color:#1877f2 !important;background:rgba(24,119,242,0.13) !important;color:#1877f2 !important;box-shadow:0 6px 22px rgba(24,119,242,0.25)}
+.smb-fb:hover svg{fill:#1877f2 !important}
+</style>
+<div style="padding:80px 0;background:#0f0f12;border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07)">
+  <div style="max-width:1140px;margin:0 auto;padding:0 40px">
+    <div style="display:flex;align-items:center;gap:18px;margin-bottom:38px">
+      <div style="flex:1;height:1px;background:rgba(255,255,255,0.1)"></div>
+      <span style="font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:rgba(255,255,255,0.42);letter-spacing:0.22em;text-transform:uppercase;white-space:nowrap">Connect on Social Media</span>
+      <div style="flex:1;height:1px;background:rgba(255,255,255,0.1)"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+      <a class="smb smb-ig" href="https://www.instagram.com/vibe_with_nanii/" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg><span>Instagram</span>
+      </a>
+      <a class="smb smb-tw" href="https://x.com/Udayk_kotipalli" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span>Twitter / X</span>
+      </a>
+      <a class="smb smb-li" href="https://www.linkedin.com/in/udaykumar-kotipalli" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>LinkedIn</span>
+      </a>
+      <a class="smb smb-fb" href="https://www.facebook.com/share/1b5x8W7LTp/" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg><span>Facebook</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="fi">
+      <div class="flogo">udaykumar.k</div>
+      <div class="fcopy">&copy; 2025 Udaykumar Kotipalli &middot; Cybersecurity Analyst</div>
+      <div class="flinks">
+        <a href="https://www.linkedin.com/in/udaykumar-kotipalli" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="#hero">Top &uarr;</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* SPLASH */
+  var sp=document.getElementById('splash');
+  var S=30,E=280;
+  function upSp(){
+    var y=window.scrollY;
+    if(y<=S){sp.style.display='flex';sp.style.opacity='1';sp.style.filter='blur(0px)';sp.style.transform='scale(1)';}
+    else if(y>=E){sp.style.opacity='0';sp.style.filter='blur(18px)';sp.style.transform='scale(1.04)';sp.style.pointerEvents='none';sp.style.display='none';}
+    else{var p=(y-S)/(E-S);sp.style.opacity=String(1-p);sp.style.filter='blur('+p*18+'px)';sp.style.transform='scale('+(1+p*0.04)+')';}
+  }
+  window.addEventListener('scroll',upSp,{passive:true});
+
+  /* REVEAL */
+  var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('on');});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){ro.observe(el);});
+
+  /* PROFICIENCY BARS */
+  var po=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:0.3});
+  document.querySelectorAll('.ptrack').forEach(function(el){po.observe(el);});
+
+  /* NAV ACTIVE */
+  var secs=document.querySelectorAll('section[id]'),nls=document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll',function(){
+    var c='';
+    secs.forEach(function(s){if(window.scrollY>=s.offsetTop-100)c=s.id;});
+    nls.forEach(function(l){l.getAttribute('href')==='#'+c?l.classList.add('act'):l.classList.remove('act');});
+  },{passive:true});
+
+  /* XSS SIMULATION */
+  window.runSim=function(){
+    var v=document.getElementById('simInput').value;
+    var res=document.getElementById('simResult');
+    var lo=v.toLowerCase();
+    var bad=(lo.indexOf('<script')!==-1||lo.indexOf('javascript:')!==-1||lo.indexOf('onerror')!==-1||lo.indexOf('<iframe')!==-1||lo.indexOf('<object')!==-1||lo.indexOf('<embed')!==-1||/on[a-z]+\s*=/.test(v));
+    res.style.display='block';
+    if(v.trim()===''){res.className='sim-result danger';res.innerHTML='&#9888;&#65039; <strong>No input provided.</strong>';}
+    else if(bad){res.className='sim-result danger';res.innerHTML='&#9888;&#65039; <strong>Potential XSS detected and blocked.</strong><br><small>Payload sanitised &mdash; rejected by security filter.</small>';}
+    else{res.className='sim-result safe';res.innerHTML='&#9989; <strong>Input accepted. No malicious pattern detected.</strong><br><small>Passed XSS filter validation successfully.</small>';}
+  };
+  var si=document.getElementById('simInput');
+  if(si)si.addEventListener('keydown',function(e){if(e.key==='Enter')window.runSim();});
+})();
+
+</script>
+</body>
+</html>
